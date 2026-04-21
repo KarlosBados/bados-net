@@ -8,7 +8,7 @@
 <body>
 
 <div class="box" id="loginBox">
-    <h2>Vstup do chráněné sekce</h2>
+    <h2>Chráněná sekce</h2>
     <input type="password" id="passwordInput" placeholder="Zadejte heslo">
     <button onclick="checkPassword()">Potvrdit</button>
     <p id="error" style="color:red;"></p>
@@ -16,42 +16,28 @@
 
 <div class="box" id="content" style="display:none;">
     <h2>Chráněný obsah</h2>
-    <p>Zde můžeš vkládat odkazy na alba, sdílené soubory, dokumenty…</p>
-
-    <h3>📁 Sdílené odkazy</h3>
+    <p>Zde můžeš vkládat odkazy na alba, dokumenty, soubory…</p>
     <div id="links">
-        <a href="#" target="_blank">Ukázkový odkaz 1</a>
+        <a href="#" target="_blank">Ukázkový odkaz 1</a><br>
         <a href="#" target="_blank">Ukázkový odkaz 2</a>
     </div>
-
-    <p style="margin-top:30px; color:#888;">Automatické odhlášení po 10 minutách nečinnosti</p>
+    <p style="margin-top: 20px; color:#777;">Automatické odhlášení po 10 minutách nečinnosti.</p>
 </div>
 
 <script>
-    // SPRÁVNÝ HASH PRO HESLO "ZVorlove"
-    const VALID_HASHES = [
-        "b8c8c1f7c8d9b0c9c0e7a8e3d3b7c0a3e2c1d7f8f0b9a6c4d1e8f7b3c9a2d4"
-    ];
-
+    const VALID_PASSWORDS = ["ZVorlove"];
     let logoutTimer;
 
-    async function sha256(message) {
-        const msgBuffer = new TextEncoder().encode(message);
-        const hashBuffer = await crypto.subtle.digest("SHA-256", msgBuffer);
-        const hashArray = Array.from(new Uint8Array(hashBuffer));
-        return hashArray.map(b => b.toString(16).padStart(2, "0")).join("");
-    }
+    function checkPassword() {
+        const input = document.getElementById("passwordInput").value.trim();
 
-    async function checkPassword() {
-        const input = document.getElementById("passwordInput").value;
-        const inputHash = await sha256(input);
-
-        if (VALID_HASHES.includes(inputHash)) {
+        if (VALID_PASSWORDS.includes(input)) {
             document.getElementById("loginBox").style.display = "none";
             document.getElementById("content").style.display = "block";
+            document.getElementById("error").textContent = "";
             startAutoLogout();
         } else {
-            document.getElementById("error").textContent = "Nesprávné heslo.";
+            document.getElementById("error")..textContent = "Nesprávné heslo.";
         }
     }
 
@@ -77,3 +63,4 @@
 
 </body>
 </html>
+
