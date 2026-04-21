@@ -85,7 +85,7 @@
         }
 
         a {
-            color: #d35400;
+            color: #555555;
             font-weight: 600;
             text-decoration: none;
         }
@@ -282,7 +282,7 @@
     }
 
     async function checkPassword() {
-        const input = document.getElementById("passwordInput").value.trim();
+        const input = passwordInput.value.trim();
         const inputHash = await sha256(input);
 
         if (inputHash === VALID_HASH) {
