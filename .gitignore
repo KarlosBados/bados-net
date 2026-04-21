@@ -1,0 +1,33 @@
+# macOS systémové soubory
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Windows systémové soubory
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# VS Code
+.vscode/
+
+# Node / JS tooling (kdyby ses někdy rozhodl přidat build nástroje)
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Lokální build / cache
+dist/
+build/
+.cache/
+.tmp/
+
+# Soubory editorů
+*.swp
+*.swo
+
+# Zálohy
+*.bak
+*.tmp
+*.orig
