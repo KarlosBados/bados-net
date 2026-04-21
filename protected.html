@@ -27,18 +27,15 @@
 </div>
 
 <script>
-    // ---- HASH HESLA (SHA-256) ----
     const VALID_HASH = "897fac0e089f3f54ec59eba11913b09907f1831ef9d5297799928954ccf55a88";
+    let logoutTimer;
 
-    // ---- SHA-256 FUNKCE ----
     async function sha256(message) {
         const msgBuffer = new TextEncoder().encode(message);
         const hashBuffer = await crypto.subtle.digest("SHA-256", msgBuffer);
         const hashArray = Array.from(new Uint8Array(hashBuffer));
         return hashArray.map(b => b.toString(16).padStart(2, "0")).join("");
     }
-
-    let logoutTimer;
 
     async function checkPassword() {
         const input = document.getElementById("passwordInput").value.trim();
@@ -53,6 +50,13 @@
             document.getElementById("error").textContent = "Nesprávné heslo.";
         }
     }
+
+    // ENTER potvrzení
+    document.getElementById("passwordInput").addEventListener("keypress", function(e) {
+        if (e.key === "Enter") {
+            checkPassword();
+        }
+    });
 
     function startAutoLogout() {
         resetTimer();

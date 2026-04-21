@@ -17,18 +17,28 @@
 <div class="box" id="content" style="display:none;">
     <h2>Rodinné odkazy</h2>
     <p>Zde můžeš vkládat rodinná alba, sdílené fotky, dokumenty…</p>
+
     <div id="links">
-        <a href="#" target="_blank">Ukázkový rodinný odkaz</a>
+        <a href="#" target="_blank">Ukázkový rodinný odkaz 1</a><br>
+        <a href="#" target="_blank">Ukázkový rodinný odkaz 2</a>
     </div>
 </div>
 
 <script>
-    const VALID_PASSWORDS = ["Moly"];
+    const VALID_HASH = "216412e210df2f7706094717b66ffc68e412edd6103ecf82d6e34465844aaf83";
 
-    function checkPassword() {
+    async function sha256(message) {
+        const msgBuffer = new TextEncoder().encode(message);
+        const hashBuffer = await crypto.subtle.digest("SHA-256", msgBuffer);
+        const hashArray = Array.from(new Uint8Array(hashBuffer));
+        return hashArray.map(b => b.toString(16).padStart(2, "0")).join("");
+    }
+
+    async function checkPassword() {
         const input = document.getElementById("passwordInput").value.trim();
+        const inputHash = await sha256(input);
 
-        if (VALID_PASSWORDS.includes(input)) {
+        if (inputHash === VALID_HASH) {
             document.getElementById("loginBox").style.display = "none";
             document.getElementById("content").style.display = "block";
             document.getElementById("error").textContent = "";
@@ -36,9 +46,14 @@
             document.getElementById("error").textContent = "Nesprávné heslo.";
         }
     }
+
+    // ENTER potvrzení
+    document.getElementById("passwordInput").addEventListener("keypress", function(e) {
+        if (e.key === "Enter") {
+            checkPassword();
+        }
+    });
 </script>
 
 </body>
 </html>
-
-
