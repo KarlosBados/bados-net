@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Projektová dokumentace</title>
+    <title>Rekonstrukce VM</title>
 
     <link rel="icon" type="image/png" href="/favicon.png">
     <link rel="shortcut icon" href="/favicon.ico">
@@ -14,7 +14,7 @@
 <body>
 
 <div class="box" id="loginBox">
-    <h2>Projektová dokumentace</h2>
+    <h2>Rekonstrukce VM</h2>
 
     <input type="password" id="passwordInput" placeholder="Zadejte heslo">
     <button onclick="checkPassword()">Potvrdit</button>
@@ -24,22 +24,38 @@
 </div>
 
 <div class="box" id="content" style="display:none;">
-    <h2>Dokumentace</h2>
+    <h2>Rekonstrukce VM – odkazy</h2>
 
-    <ul class="photo-list">
+    <ul class="link-list">
+
         <li>
             <span class="link-icon">📁</span>
-            <a href="https://photos.app.goo.gl/ASjX9mhJzUvDRR327" target="_blank">
-                Projektová dokumentace – Google Drive
+            <a href="https://drive.google.com/drive/folders/1KnofEeNvlRzVrq2MoJD71EHw_vBZ1hyX?usp=sharing" target="_blank">
+                Pracovní disk – projektová dokumentace
             </a>
         </li>
+
+        <li>
+            <span class="link-icon">📸</span>
+            <a href="https://photos.app.goo.gl/V3AU9nBqMGqcsBEj6" target="_blank">
+                Fotografie – místa potřebných oprav
+            </a>
+        </li>
+
+        <li>
+            <span class="link-icon">🖼️</span>
+            <a href="https://photos.app.goo.gl/zBKM1FTJDmgAjREG6" target="_blank">
+                Fotografie – stav před opravami
+            </a>
+        </li>
+
     </ul>
 
     <button class="back-btn" onclick="window.location.href='/index.html'">Zpět</button>
 </div>
 
 <script>
-    const VALID_HASH = "216412e210df2f7706094717b66ffc68e412edd6103ecf82d6e34465844aaf83";
+    const VALID_HASH = "267adb19a394f3d8659f880e3d3ce51665b7df4495de31a7a6199884cf4c6cc1";
     let logoutTimer;
 
     async function sha256(message) {
@@ -89,4 +105,3 @@
 
 </body>
 </html>
-
