@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Rekonstrukce VM</title>
-    <link rel="stylesheet" href="style.css">
 
     <style>
         body {
@@ -12,6 +11,7 @@
             justify-content: center;
             padding: 40px 15px;
             background: #f5f5f5;
+            font-family: Arial, sans-serif;
         }
 
         .box {
@@ -53,18 +53,6 @@
             background: #005fa3;
         }
 
-        a {
-            display: block;
-            margin: 12px 0;
-            font-size: 1.1rem;
-            color: #0077cc;
-            text-decoration: none;
-        }
-
-        a:hover {
-            text-decoration: underline;
-        }
-
         .back-btn {
             background: #666;
             margin-top: 20px;
@@ -73,10 +61,39 @@
         .back-btn:hover {
             background: #444;
         }
+
+        /* Odkazy – seznam */
+        .link-list {
+            text-align: left;
+            margin-top: 20px;
+            padding-left: 0;
+        }
+
+        .link-list li {
+            list-style: none;
+            margin: 14px 0;
+            line-height: 1.4;
+        }
+
+        .drive-link a {
+            color: #0b6efd;
+            font-weight: 600;
+        }
+
+        .photo-link a {
+            color: #d35400;
+            font-weight: 600;
+        }
+
+        .link-icon {
+            margin-right: 8px;
+            font-size: 1.2rem;
+        }
     </style>
 </head>
 <body>
 
+<!-- Přihlašovací box -->
 <div class="box" id="loginBox">
     <h2>Rekonstrukce VM</h2>
 
@@ -89,20 +106,34 @@
     </button>
 </div>
 
+<!-- Obsah po přihlášení -->
 <div class="box" id="content" style="display:none;">
     <h2>Rekonstrukce VM – odkazy</h2>
 
-    <a href="https://drive.google.com/drive/folders/1KnofEeNvlRzVrq2MoJD71EHw_vBZ1hyX?usp=share_link" target="_blank">
-        Pracovní disk – obsahuje potřebné dokumenty (např. projektová dokumentace)
-    </a>
+    <ul class="link-list">
 
-    <a href="https://photos.app.goo.gl/V3AU9nBqMGqcsBEj6" target="_blank">
-        Album fotografií RD Velké Meziříčí – místa potřebných oprav
-    </a>
+        <li class="drive-link">
+            <span class="link-icon">📁</span>
+            <a href="https://drive.google.com/drive/folders/1KnofEeNvlRzVrq2MoJD71EHw_vBZ1hyX?usp=share_link" target="_blank">
+                Pracovní disk – obsahuje potřebné dokumenty (např. projektová dokumentace)
+            </a>
+        </li>
 
-    <a href="https://photos.app.goo.gl/zBKM1FTJDmgAjREG6" target="_blank">
-        Album fotografií RD Velké Meziříčí – stav před opravami
-    </a>
+        <li class="photo-link">
+            <span class="link-icon">📸</span>
+            <a href="https://photos.app.goo.gl/V3AU9nBqMGqcsBEj6" target="_blank">
+                Album fotografií RD Velké Meziříčí – místa potřebných oprav
+            </a>
+        </li>
+
+        <li class="photo-link">
+            <span class="link-icon">🖼️</span>
+            <a href="https://photos.app.goo.gl/zBKM1FTJDmgAjREG6" target="_blank">
+                Album fotografií RD Velké Meziříčí – stav před opravami
+            </a>
+        </li>
+
+    </ul>
 
     <button class="back-btn" onclick="window.location.href='index.html'">
         Zpět
@@ -110,6 +141,7 @@
 </div>
 
 <script>
+    /* SHA-256 hash hesla */
     const VALID_HASH = "267adb19a394f3d8659f880e3d3ce51665b7df4495de31a7a6199884cf4c6cc1";
     let logoutTimer;
 
@@ -134,13 +166,14 @@
         }
     }
 
-    // ENTER potvrzení
+    /* ENTER potvrzení */
     document.getElementById("passwordInput").addEventListener("keypress", function(e) {
         if (e.key === "Enter") {
             checkPassword();
         }
     });
 
+    /* Auto logout */
     function startAutoLogout() {
         resetTimer();
         document.onmousemove = resetTimer;
