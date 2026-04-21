@@ -27,6 +27,7 @@
         h2 {
             font-size: 1.6rem;
             margin-bottom: 20px;
+            color: #0077cc;
         }
 
         input {
@@ -62,27 +63,26 @@
             background: #444;
         }
 
-        /* Odkazy – seznam */
         .link-list {
             text-align: left;
-            margin-top: 20px;
+            margin-top: 10px;
             padding-left: 0;
         }
 
         .link-list li {
             list-style: none;
-            margin: 14px 0;
+            margin: 12px 0;
             line-height: 1.4;
         }
 
-        .drive-link a {
-            color: #0b6efd;
-            font-weight: 600;
-        }
-
-        .photo-link a {
+        a {
             color: #d35400;
             font-weight: 600;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
         }
 
         .link-icon {
@@ -93,7 +93,6 @@
 </head>
 <body>
 
-<!-- Přihlašovací box -->
 <div class="box" id="loginBox">
     <h2>Rekonstrukce VM</h2>
 
@@ -101,32 +100,29 @@
     <button onclick="checkPassword()">Potvrdit</button>
     <p id="error" style="color:red;"></p>
 
-    <button class="back-btn" onclick="window.location.href='index.html'">
-        Zpět
-    </button>
+    <button class="back-btn" onclick="window.location.href='index.html'">Zpět</button>
 </div>
 
-<!-- Obsah po přihlášení -->
 <div class="box" id="content" style="display:none;">
     <h2>Rekonstrukce VM – odkazy</h2>
 
     <ul class="link-list">
 
-        <li class="drive-link">
+        <li>
             <span class="link-icon">📁</span>
             <a href="https://drive.google.com/drive/folders/1KnofEeNvlRzVrq2MoJD71EHw_vBZ1hyX?usp=sharing" target="_blank">
                 Pracovní disk – obsahuje potřebné dokumenty (např. projektová dokumentace)
             </a>
         </li>
 
-        <li class="photo-link">
+        <li>
             <span class="link-icon">📸</span>
             <a href="https://photos.app.goo.gl/V3AU9nBqMGqcsBEj6" target="_blank">
                 Album fotografií RD Velké Meziříčí – místa potřebných oprav
             </a>
         </li>
 
-        <li class="photo-link">
+        <li>
             <span class="link-icon">🖼️</span>
             <a href="https://photos.app.goo.gl/zBKM1FTJDmgAjREG6" target="_blank">
                 Album fotografií RD Velké Meziříčí – stav před opravami
@@ -135,13 +131,10 @@
 
     </ul>
 
-    <button class="back-btn" onclick="window.location.href='index.html'">
-        Zpět
-    </button>
+    <button class="back-btn" onclick="window.location.href='index.html'">Zpět</button>
 </div>
 
 <script>
-    /* SHA-256 hash hesla */
     const VALID_HASH = "267adb19a394f3d8659f880e3d3ce51665b7df4495de31a7a6199884cf4c6cc1";
     let logoutTimer;
 
@@ -157,23 +150,19 @@
         const inputHash = await sha256(input);
 
         if (inputHash === VALID_HASH) {
-            document.getElementById("loginBox").style.display = "none";
-            document.getElementById("content").style.display = "block";
-            document.getElementById("error").textContent = "";
+            loginBox.style.display = "none";
+            content.style.display = "block";
+            error.textContent = "";
             startAutoLogout();
         } else {
-            document.getElementById("error").textContent = "Nesprávné heslo.";
+            error.textContent = "Nesprávné heslo.";
         }
     }
 
-    /* ENTER potvrzení */
-    document.getElementById("passwordInput").addEventListener("keypress", function(e) {
-        if (e.key === "Enter") {
-            checkPassword();
-        }
+    passwordInput.addEventListener("keypress", e => {
+        if (e.key === "Enter") checkPassword();
     });
 
-    /* Auto logout */
     function startAutoLogout() {
         resetTimer();
         document.onmousemove = resetTimer;
@@ -187,12 +176,13 @@
     }
 
     function logout() {
-        document.getElementById("content").style.display = "none";
-        document.getElementById("loginBox").style.display = "block";
-        document.getElementById("passwordInput").value = "";
-        document.getElementById("error").textContent = "Byl jste automaticky odhlášen.";
+        content.style.display = "none";
+        loginBox.style.display = "block";
+        passwordInput.value = "";
+        error.textContent = "Byl jste automaticky odhlášen.";
     }
 </script>
 
 </body>
 </html>
+
