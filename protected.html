@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Rekonstrukce VM</title>
+    <title>Bados NET</title>
 
     <style>
         body {
@@ -24,165 +24,34 @@
             box-shadow: 0 4px 12px rgba(0,0,0,0.1);
         }
 
-        h2 {
-            font-size: 1.6rem;
-            margin-bottom: 20px;
+        h1 {
+            font-size: 1.8rem;
+            margin-bottom: 25px;
             color: #0077cc;
         }
 
-        input {
-            width: 100%;
-            padding: 12px;
-            font-size: 1.1rem;
-            border-radius: 8px;
-            border: 1px solid #ccc;
-            margin-bottom: 15px;
-        }
-
-        button {
-            padding: 12px 20px;
-            font-size: 1.1rem;
-            border-radius: 8px;
-            border: none;
-            background: #0077cc;
-            color: white;
-            cursor: pointer;
-            margin-top: 5px;
-        }
-
-        button:hover {
-            background: #005fa3;
-        }
-
-        .back-btn {
-            background: #666;
-            margin-top: 20px;
-        }
-
-        .back-btn:hover {
-            background: #444;
-        }
-
-        .link-list {
-            text-align: left;
-            margin-top: 10px;
-            padding-left: 0;
-        }
-
-        .link-list li {
-            list-style: none;
-            margin: 12px 0;
-            line-height: 1.4;
-        }
-
         a {
-            color: #d35400;
-            font-weight: 600;
+            display: block;
+            font-size: 1.2rem;
+            margin: 12px 0;
             text-decoration: none;
+            color: #555555;
+            font-weight: 600;
         }
 
         a:hover {
             text-decoration: underline;
         }
-
-        .link-icon {
-            margin-right: 8px;
-            font-size: 1.2rem;
-        }
     </style>
 </head>
 <body>
 
-<div class="box" id="loginBox">
-    <h2>Rekonstrukce VM</h2>
+<div class="box">
+    <h1>Vítejte na Bados NET</h1>
 
-    <input type="password" id="passwordInput" placeholder="Zadejte heslo">
-    <button onclick="checkPassword()">Potvrdit</button>
-    <p id="error" style="color:red;"></p>
-
-    <button class="back-btn" onclick="window.location.href='index.html'">Zpět</button>
+    <a href="protected.html">Rekonstrukce VM</a>
+    <a href="rodina.html">Rodinné FOTO</a>
 </div>
-
-<div class="box" id="content" style="display:none;">
-    <h2>Rekonstrukce VM – odkazy</h2>
-
-    <ul class="link-list">
-
-        <li>
-            <span class="link-icon">📁</span>
-            <a href="https://drive.google.com/drive/folders/1KnofEeNvlRzVrq2MoJD71EHw_vBZ1hyX?usp=sharing" target="_blank">
-                Pracovní disk – obsahuje potřebné dokumenty (např. projektová dokumentace)
-            </a>
-        </li>
-
-        <li>
-            <span class="link-icon">📸</span>
-            <a href="https://photos.app.goo.gl/V3AU9nBqMGqcsBEj6" target="_blank">
-                Album fotografií RD Velké Meziříčí – místa potřebných oprav
-            </a>
-        </li>
-
-        <li>
-            <span class="link-icon">🖼️</span>
-            <a href="https://photos.app.goo.gl/zBKM1FTJDmgAjREG6" target="_blank">
-                Album fotografií RD Velké Meziříčí – stav před opravami
-            </a>
-        </li>
-
-    </ul>
-
-    <button class="back-btn" onclick="window.location.href='index.html'">Zpět</button>
-</div>
-
-<script>
-    const VALID_HASH = "267adb19a394f3d8659f880e3d3ce51665b7df4495de31a7a6199884cf4c6cc1";
-    let logoutTimer;
-
-    async function sha256(message) {
-        const msgBuffer = new TextEncoder().encode(message);
-        const hashBuffer = await crypto.subtle.digest("SHA-256", msgBuffer);
-        const hashArray = Array.from(new Uint8Array(hashBuffer));
-        return hashArray.map(b => b.toString(16).padStart(2, "0")).join("");
-    }
-
-    async function checkPassword() {
-        const input = document.getElementById("passwordInput").value.trim();
-        const inputHash = await sha256(input);
-
-        if (inputHash === VALID_HASH) {
-            loginBox.style.display = "none";
-            content.style.display = "block";
-            error.textContent = "";
-            startAutoLogout();
-        } else {
-            error.textContent = "Nesprávné heslo.";
-        }
-    }
-
-    passwordInput.addEventListener("keypress", e => {
-        if (e.key === "Enter") checkPassword();
-    });
-
-    function startAutoLogout() {
-        resetTimer();
-        document.onmousemove = resetTimer;
-        document.onkeypress = resetTimer;
-        document.onclick = resetTimer;
-    }
-
-    function resetTimer() {
-        clearTimeout(logoutTimer);
-        logoutTimer = setTimeout(logout, 10 * 60 * 1000);
-    }
-
-    function logout() {
-        content.style.display = "none";
-        loginBox.style.display = "block";
-        passwordInput.value = "";
-        error.textContent = "Byl jste automaticky odhlášen.";
-    }
-</script>
 
 </body>
 </html>
-
