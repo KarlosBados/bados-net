@@ -3,105 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Rekonstrukce VM</title>
+    <title>Bados – Foto & Projekty</title>
 
-    <link rel="icon" type="image/png" href="favicon.png">
-    <link rel="shortcut icon" href="favicon.ico">
-    <link rel="manifest" href="manifest.json">
+    <link rel="icon" type="image/png" href="/favicon.png">
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="manifest" href="/manifest.json">
 
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="/style.css">
 </head>
 <body>
 
-<div class="box" id="loginBox">
-    <h2>Rekonstrukce VM</h2>
-
-    <input type="password" id="passwordInput" placeholder="Zadejte heslo">
-    <button onclick="checkPassword()">Potvrdit</button>
-    <p id="error" style="color:red;"></p>
-
-    <button class="back-btn" onclick="window.location.href='index.html'">Zpět</button>
-</div>
-
-<div class="box" id="content" style="display:none;">
-    <h2>Rekonstrukce VM – odkazy</h2>
+<div class="box">
+    <h1>Vítejte</h1>
 
     <ul class="link-list">
-
         <li>
-            <span class="link-icon">📁</span>
-            <a href="https://drive.google.com/drive/folders/1KnofEeNvlRzVrq2MoJD71EHw_vBZ1hyX?usp=sharing" target="_blank">
-                Pracovní disk – projektová dokumentace
-            </a>
+            <span class="link-icon">📷</span>
+            <a href="/rodina.html">Rodinné fotoalba</a>
         </li>
 
         <li>
-            <span class="link-icon">📸</span>
-            <a href="https://photos.app.goo.gl/V3AU9nBqMGqcsBEj6" target="_blank">
-                Fotografie – místa potřebných oprav
-            </a>
+            <span class="link-icon">🔒</span>
+            <a href="/protected.html">Projektová dokumentace</a>
         </li>
-
-        <li>
-            <span class="link-icon">🖼️</span>
-            <a href="https://photos.app.goo.gl/zBKM1FTJDmgAjREG6" target="_blank">
-                Fotografie – stav před opravami
-            </a>
-        </li>
-
     </ul>
-
-    <button class="back-btn" onclick="window.location.href='index.html'">Zpět</button>
 </div>
-
-<script>
-    const VALID_HASH = "267adb19a394f3d8659f880e3d3ce51665b7df4495de31a7a6199884cf4c6cc1";
-    let logoutTimer;
-
-    async function sha256(message) {
-        const msgBuffer = new TextEncoder().encode(message);
-        const hashBuffer = await crypto.subtle.digest("SHA-256", msgBuffer);
-        const hashArray = Array.from(new Uint8Array(hashBuffer));
-        return hashArray.map(b => b.toString(16).padStart(2, "0")).join("");
-    }
-
-    async function checkPassword() {
-        const input = passwordInput.value.trim();
-        const inputHash = await sha256(input);
-
-        if (inputHash === VALID_HASH) {
-            loginBox.style.display = "none";
-            content.style.display = "block";
-            error.textContent = "";
-            startAutoLogout();
-        } else {
-            error.textContent = "Nesprávné heslo.";
-        }
-    }
-
-    passwordInput.addEventListener("keypress", e => {
-        if (e.key === "Enter") checkPassword();
-    });
-
-    function startAutoLogout() {
-        resetTimer();
-        document.onmousemove = resetTimer;
-        document.onkeypress = resetTimer;
-        document.onclick = resetTimer;
-    }
-
-    function resetTimer() {
-        clearTimeout(logoutTimer);
-        logoutTimer = setTimeout(logout, 10 * 60 * 1000);
-    }
-
-    function logout() {
-        content.style.display = "none";
-        loginBox.style.display = "block";
-        passwordInput.value = "";
-        error.textContent = "Byl jste automaticky odhlášen.";
-    }
-</script>
 
 </body>
 </html>

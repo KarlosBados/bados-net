@@ -5,11 +5,100 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Rodinné FOTO</title>
 
-    <link rel="icon" type="image/png" href="favicon.png">
-    <link rel="shortcut icon" href="favicon.ico">
-    <link rel="manifest" href="manifest.json">
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            padding: 40px 15px;
+            background: #f5f5f5;
+            font-family: Arial, sans-serif;
+        }
 
-    <link rel="stylesheet" href="style.css">
+        .box {
+            background: white;
+            padding: 30px 25px;
+            border-radius: 12px;
+            text-align: center;
+            max-width: 420px;
+            width: 100%;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        h2 {
+            font-size: 1.6rem;
+            margin-bottom: 20px;
+            color: #0077cc;
+        }
+
+        h3 {
+            text-align: left;
+            margin-top: 25px;
+            margin-bottom: 10px;
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #0077cc;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            font-size: 1.1rem;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            margin-bottom: 15px;
+        }
+
+        button {
+            padding: 12px 20px;
+            font-size: 1.1rem;
+            border-radius: 8px;
+            border: none;
+            background: #0077cc;
+            color: white;
+            cursor: pointer;
+            margin-top: 5px;
+        }
+
+        button:hover {
+            background: #005fa3;
+        }
+
+        .back-btn {
+            background: #666;
+            margin-top: 20px;
+        }
+
+        .back-btn:hover {
+            background: #444;
+        }
+
+        .link-list {
+            text-align: left;
+            margin-top: 10px;
+            padding-left: 0;
+        }
+
+        .link-list li {
+            list-style: none;
+            margin: 12px 0;
+            line-height: 1.4;
+        }
+
+        a {
+            color: #555555;
+            font-weight: 600;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .link-icon {
+            margin-right: 8px;
+            font-size: 1.2rem;
+        }
+    </style>
 </head>
 <body>
 
@@ -20,67 +109,165 @@
     <button onclick="checkPassword()">Potvrdit</button>
     <p id="error" style="color:red;"></p>
 
-    <button class="back-btn" onclick="window.location.href='index.html'">Zpět</button>
+    <button class="back-btn" onclick="window.location.href='/index.html'">Zpět</button>
 </div>
 
 <div class="box" id="content" style="display:none;">
     <h2>Rodinná fotoalba</h2>
 
-    <ul class="link-list">
-        <li class="photo-link">
-            <span class="link-icon">📌</span>
-            <a href="https://photos.app.goo.gl/ASjX9mhJzUvDRR327" target="_blank">
-                Snad tu něco brzy přidám...
-            </a>
-        </li>
-    </ul>
-
-    <hr>
-
     <!-- 2026 -->
     <h3>2026</h3>
-    <ul class="photo-list">
-        <li><span class="link-icon">🌴</span> Gran Canaria 04/2026</li>
-        <li><span class="link-icon">🎉</span> Klárka & Luboš – narozeniny 03/2026</li>
+    <ul class="link-list">
+
+        <li class="photo-link">
+            <span class="link-icon">🌴</span>
+            <a href="https://photos.app.goo.gl/yEKjxmLBWe6AZdJw7" target="_blank">
+                Gran Canaria 04/2026
+            </a>
+        </li>
+
+        <li class="photo-link">
+            <span class="link-icon">🎉</span>
+            <a href="https://photos.app.goo.gl/wBXLMiNea7BySstq6" target="_blank">
+                Klárka & Luboš – narozeniny 03/2026
+            </a>
+        </li>
+
     </ul>
 
     <!-- 2025 -->
     <h3>2025</h3>
-    <ul class="photo-list">
-        <li><span class="link-icon">🌴</span> Thajsko – prosinec 2025 (IV)</li>
-        <li><span class="link-icon">🌴</span> Thajsko – prosinec 2025 (III)</li>
-        <li><span class="link-icon">🌴</span> Thajsko – prosinec 2025 (II)</li>
-        <li><span class="link-icon">🌴</span> Thajsko – prosinec 2025 (I)</li>
-        <li><span class="link-icon">🎉</span> Denisa – narozeniny 09/2025</li>
-        <li><span class="link-icon">🎂</span> Helča – narozeniny 08/2025</li>
-        <li><span class="link-icon">🏖️</span> Sardinie – červenec 2025 (II)</li>
-        <li><span class="link-icon">🏖️</span> Sardinie – červenec 2025</li>
-        <li><span class="link-icon">🌊</span> Plitvické jezera 04/2025</li>
-        <li><span class="link-icon">🌴</span> Thajsko 02/2025</li>
+    <ul class="link-list">
+
+        <li class="photo-link">
+            <span class="link-icon">🌴</span>
+            <a href="https://photos.app.goo.gl/hGRyKwtJ8TxA4KuL7" target="_blank">
+                Thajsko – prosinec 2025 (IV)
+            </a>
+        </li>
+
+        <li class="photo-link">
+            <span class="link-icon">🌴</span>
+            <a href="https://photos.app.goo.gl/jiSTEHL3KX3wNZ4HA" target="_blank">
+                Thajsko – prosinec 2025 (III)
+            </a>
+        </li>
+
+        <li class="photo-link">
+            <span class="link-icon">🌴</span>
+            <a href="https://photos.app.goo.gl/1Ayt5tRLT6JEq8Hz7" target="_blank">
+                Thajsko – prosinec 2025 (II)
+            </a>
+        </li>
+
+        <li class="photo-link">
+            <span class="link-icon">🌴</span>
+            <a href="https://photos.app.goo.gl/exC9ymdpGrcHNpos7" target="_blank">
+                Thajsko – prosinec 2025 (I)
+            </a>
+        </li>
+
+        <li class="photo-link">
+            <span class="link-icon">🎉</span>
+            <a href="https://photos.app.goo.gl/3Dw71hLiLQ6BPETY9" target="_blank">
+                Denisa – narozeniny 09/2025
+            </a>
+        </li>
+
+        <li class="photo-link">
+            <span class="link-icon">🎂</span>
+            <a href="https://photos.app.goo.gl/EAGJE15QzdEZ6UMu5" target="_blank">
+                Helča – narozeniny 08/2025
+            </a>
+        </li>
+
+        <li class="photo-link">
+            <span class="link-icon">🏖️</span>
+            <a href="https://photos.app.goo.gl/gwHqQUE117nb76tC8" target="_blank">
+                Sardinie – červenec 2025 (II)
+            </a>
+        </li>
+
+        <li class="photo-link">
+            <span class="link-icon">🏖️</span>
+            <a href="https://photos.app.goo.gl/BTteRMJs4qJwE3t47" target="_blank">
+                Sardinie – červenec 2025
+            </a>
+        </li>
+
+        <li class="photo-link">
+            <span class="link-icon">🌊</span>
+            <a href="https://photos.app.goo.gl/R5yPBQfP29Vo2NDx7" target="_blank">
+                Plitvické jezera 04/2025
+            </a>
+        </li>
+
+        <li class="photo-link">
+            <span class="link-icon">🌴</span>
+            <a href="https://photos.app.goo.gl/CJAS4AvrhQhJNvnX8" target="_blank">
+                Thajsko 02/2025
+            </a>
+        </li>
+
     </ul>
 
     <!-- 2024 -->
     <h3>2024</h3>
-    <ul class="photo-list">
-        <li><span class="link-icon">🌴</span> Denisa & Karel – Maledivy 2024</li>
-        <li><span class="link-icon">🌴</span> Denisa & Karel – Maledivy 2024 (II)</li>
-        <li><span class="link-icon">🏕️</span> Madeira 03/2024 – I.</li>
-        <li><span class="link-icon">🏕️</span> Madeira 03/2024 – II.</li>
+    <ul class="link-list">
+
+        <li class="photo-link">
+            <span class="link-icon">🏝️</span>
+            <a href="https://photos.app.goo.gl/BtuPpd5ejwdJe73h9" target="_blank">
+                Denisa & Karel – Maledivy 2024
+            </a>
+        </li>
+
+        <li class="photo-link">
+            <span class="link-icon">🏝️</span>
+            <a href="https://photos.app.goo.gl/iJwRTzkio7q2WMaEA" target="_blank">
+                Denisa & Karel – Maledivy 2024 (II)
+            </a>
+        </li>
+
+        <li class="photo-link">
+            <span class="link-icon">🌋</span>
+            <a href="https://photos.app.goo.gl/EPoDYZtPZ7WjNNPJA" target="_blank">
+                Madeira 03/2024 – I.
+            </a>
+        </li>
+
+        <li class="photo-link">
+            <span class="link-icon">🌋</span>
+            <a href="https://photos.app.goo.gl/MaNDGbSkrPt9yBQD9" target="_blank">
+                Madeira 03/2024 – II.
+            </a>
+        </li>
+
     </ul>
 
     <!-- 2023 -->
     <h3>2023</h3>
-    <ul class="photo-list">
-        <li><span class="link-icon">🏔️</span> Kaprun 12/2023</li>
+    <ul class="link-list">
+        <li class="photo-link">
+            <span class="link-icon">🏔️</span>
+            <a href="https://photos.app.goo.gl/6Sw2FycnoWnGBbSA9" target="_blank">
+                Kaprun 12/2023
+            </a>
+        </li>
     </ul>
 
     <!-- 2014 -->
     <h3>2014</h3>
-    <ul class="photo-list">
-        <li><span class="link-icon">🎉</span> Denisa – narozeniny 09/2014</li>
+    <ul class="link-list">
+        <li class="photo-link">
+            <span class="link-icon">🎂</span>
+            <a href="https://photos.app.goo.gl/PeynPitb2Wt26nb49" target="_blank">
+                Denisa – narozeniny 09/2014
+            </a>
+        </li>
     </ul>
 
-    <button class="back-btn" onclick="window.location.href='index.html'">Zpět</button>
+    <button class="back-btn" onclick="window.location.href='/index.html'">Zpět</button>
 </div>
 
 <script>
