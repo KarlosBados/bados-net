@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <title>Rodina</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="box" id="loginBox">
+    <h2>Rodinná sekce</h2>
+    <input type="password" id="passwordInput" placeholder="Zadejte heslo">
+    <button onclick="checkPassword()">Potvrdit</button>
+    <p id="error" style="color:red;"></p>
+</div>
+
+<div class="box" id="content">
+    <h2>Rodinné odkazy</h2>
+    <p>Zde můžeš vkládat rodinná alba, sdílené fotky, dokumenty…</p>
+
+    <div id="links">
+        <a href="#" target="_blank">Ukázkový rodinný odkaz</a>
+    </div>
+</div>
+
+<script>
+    const VALID_HASHES = [
+        "a9c1f0d8b7e3c4a1d2f9e6b0c3d7a8f1e4b9c2d0f7a6e3c1b8d5f0a2c9e7d4"
+    ];
+
+    async function sha256(message) {
+        const msgBuffer = new TextEncoder().encode(message);
+        const hashBuffer = await crypto.subtle.digest("SHA-256", msgBuffer);
+        const hashArray = Array.from(new Uint8Array(hashBuffer));
+        return hashArray.map(b => b.toString(16).padStart(2, "0")).join("");
+    }
+
+    async function checkPassword() {
+        const input = document.getElementById("passwordInput").value;
+        const inputHash = await sha256(input);
+
+        if (VALID_HASHES.includes(inputHash)) {
+            document.getElementById("loginBox").style.display = "none";
+            document.getElementById("content").style.display = "block";
+        } else {
+            document.getElementById("error").textContent = "Nesprávné heslo.";
+        }
+    }
+</script>
+
+</body>
+</html>
+
